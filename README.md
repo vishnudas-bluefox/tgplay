@@ -1,8 +1,8 @@
-# tgplay
+# tgplay — watch Telegram video while downloading on macOS
 
-Play a Telegram video on your Mac **before the download finishes**.
+Play a Telegram video on your Mac **while it is still downloading**. You do not have to wait until Telegram finishes saving the file.
 
-Telegram usually makes you wait until the whole file is saved. tgplay watches the download, shows progress, and opens it in VLC (or another player you pick).
+Telegram for Mac usually makes you wait until the whole video is saved. tgplay watches that download, shows progress, and opens it in VLC so you can watch while downloading.
 
 Created by [Vishnudas-bluefox](https://github.com/vishnudas-bluefox)
 
@@ -171,6 +171,20 @@ That is normal for a tool that is not in the official Homebrew catalog. Use the 
 Telegram does not store the original filename in that cache folder. tgplay shows the video type, size, and progress instead.
 
 ---
+
+## Common questions
+
+**Can I watch a Telegram video on Mac while it is downloading?**  
+Yes. That is what tgplay is for. Start the download in Telegram for Mac, run `tgplay` in Terminal, pick the file, and open it in VLC.
+
+**Is there a Telegram “watch while downloading” tool for macOS?**  
+Telegram’s Mac app does not give you a simple way to play a large file mid-download. tgplay is a free, local command-line tool that finds the in-progress file and plays it.
+
+**Does this work with Telegram Desktop or only Telegram for Mac?**  
+It is built for the official Telegram for Mac app (the one from telegram.org / the Mac App Store).
+
+**Do I need to log in or give tgplay my Telegram account?**  
+No. It only reads the download files already on your Mac.
 
 ## Privacy
 

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add a GitHub Pages site and FAQ so search engines can find “watch Telegram video while downloading on macOS”
 - Rewrite the README as a step-by-step guide for regular Mac users
 - Confirm the selected file before playback
 - Ask which player to use; VLC is first and recommended

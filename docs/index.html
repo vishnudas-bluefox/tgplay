@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Watch Telegram video while downloading on macOS | tgplay</title>
+  <meta name="description" content="Watch Telegram videos on Mac while they download. tgplay finds the in-progress file and opens it in VLC before Telegram finishes. Free, local, no login.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://vishnudas-bluefox.github.io/tgplay/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Watch Telegram video while downloading on macOS | tgplay">
+  <meta property="og:description" content="Play a Telegram video on your Mac before the download finishes. Free Terminal tool. VLC recommended.">
+  <meta property="og:url" content="https://vishnudas-bluefox.github.io/tgplay/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Watch Telegram video while downloading on macOS">
+  <meta name="twitter:description" content="tgplay lets you watch Telegram videos on Mac while they are still downloading.">
+  <style>
+    :root {
+      --bg: #f6f1e8;
+      --ink: #1c1915;
+      --muted: #5c564c;
+      --line: #d9d0c1;
+      --card: #fffdf8;
+      --accent: #b42318;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      font-size: 1.125rem;
+    }
+    header, main, footer { width: min(42rem, calc(100% - 2rem)); margin: 0 auto; }
+    header { padding: 3.5rem 0 1.5rem; }
+    .kicker {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.75rem;
+    }
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      line-height: 1.15;
+      font-weight: 600;
+      margin: 0 0 1rem;
+    }
+    h2 { font-size: 1.35rem; margin: 2.4rem 0 0.75rem; }
+    p, li { color: var(--ink); }
+    .lede { font-size: 1.2rem; color: var(--muted); margin: 0; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 1.1rem 1.2rem;
+      margin: 1.5rem 0;
+    }
+    pre {
+      margin: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.92rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+    ol { padding-left: 1.2rem; }
+    a { color: var(--accent); }
+    details {
+      border-top: 1px solid var(--line);
+      padding: 0.85rem 0;
+    }
+    details:first-of-type { border-top: 0; }
+    summary { cursor: pointer; font-weight: 600; }
+    details p { margin: 0.5rem 0 0; color: var(--muted); }
+    footer {
+      padding: 2.5rem 0 3.5rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "tgplay",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "macOS",
+    "description": "Watch Telegram videos on macOS while they are still downloading. Plays the in-progress file in VLC.",
+    "url": "https://vishnudas-bluefox.github.io/tgplay/",
+    "downloadUrl": "https://github.com/vishnudas-bluefox/tgplay",
+    "license": "https://github.com/vishnudas-bluefox/tgplay/blob/main/LICENSE",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Vishnudas-bluefox",
+      "url": "https://github.com/vishnudas-bluefox"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I watch a Telegram video on Mac while it is downloading?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Install tgplay, start the download in Telegram for Mac, run tgplay in Terminal, select the file, and open it in VLC."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a tool to watch while downloading a Telegram video on macOS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "tgplay is a free macOS command-line tool that finds Telegram's in-progress download and plays it before the file finishes saving."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to log in to Telegram to use tgplay?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. tgplay only reads the download files already on your Mac. It does not use the Telegram API and never uploads your videos."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <p class="kicker">tgplay for macOS</p>
+    <h1>Watch Telegram video while downloading on your Mac</h1>
+    <p class="lede">Telegram usually waits until the whole file is saved. tgplay lets you play that video in VLC while the download is still running.</p>
+  </header>
+  <main>
+    <div class="card">
+      <pre>brew install vishnudas-bluefox/tap/tgplay
+brew install --cask vlc
+tgplay</pre>
+    </div>
+    <h2>How to watch while downloading</h2>
+    <ol>
+      <li>Start the video download in Telegram for Mac.</li>
+      <li>Open Terminal and type <code>tgplay</code>.</li>
+      <li>Use the arrow keys to highlight the file.</li>
+      <li>Press Return, pick VLC, press Return again.</li>
+    </ol>
+    <p>Nothing starts until you confirm the file and the player.</p>
+    <h2>Questions</h2>
+    <details open>
+      <summary>Can I watch a Telegram video on macOS while it downloads?</summary>
+      <p>Yes. That is what tgplay does. It finds the in-progress Telegram file on your Mac and opens it in VLC.</p>
+    </details>
+    <details>
+      <summary>Is this an app from the App Store?</summary>
+      <p>No. It is a small free Terminal tool. You install it with Homebrew, then run <code>tgplay</code>.</p>
+    </details>
+    <details>
+      <summary>Does it upload my Telegram videos?</summary>
+      <p>No. It only reads files already on this Mac and starts VLC, IINA, or mpv.</p>
+    </details>
+    <p><a href="https://github.com/vishnudas-bluefox/tgplay">Full install guide on GitHub</a></p>
+  </main>
+  <footer>
+    Free and open source. MIT license.
+    <a href="https://github.com/vishnudas-bluefox/tgplay">vishnudas-bluefox/tgplay</a>
+  </footer>
+</body>
+</html>
