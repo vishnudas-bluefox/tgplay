@@ -14,6 +14,8 @@ SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 # Packaged layout: /opt/homebrew/bin/tgplay -> /opt/homebrew/lib/tgplay/tgplay
 for ROOT in \
   "$SCRIPT_DIR/.." \
+  "$SCRIPT_DIR/../libexec" \
+  "$SCRIPT_DIR/../lib/tgplay" \
   "/opt/homebrew/lib/tgplay" \
   "/usr/local/lib/tgplay" \
   "${HOME}/.linuxbrew/lib/tgplay" \

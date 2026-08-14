@@ -1,4 +1,6 @@
 class Tgplay < Formula
+  include Language::Python::Virtualenv
+
   desc "Play Telegram for Mac downloads from the terminal while they are still arriving"
   homepage "https://github.com/vishnudas-bluefox/tgplay"
   url "https://github.com/vishnudas-bluefox/tgplay/archive/refs/tags/v0.1.0.tar.gz"
@@ -10,9 +12,7 @@ class Tgplay < Formula
   depends_on "python@3.12"
 
   def install
-    libexec.install "tgplay"
-    (lib/"tgplay").install_symlink libexec
-    bin.install "bin/tgplay"
+    virtualenv_install_with_resources
   end
 
   def caveats

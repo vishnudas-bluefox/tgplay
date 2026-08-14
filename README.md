@@ -60,7 +60,15 @@ The usual path is Homebrew. This puts `tgplay` on your PATH so it works from any
 brew install vishnudas-bluefox/tap/tgplay
 ```
 
-That one line taps the repo and installs the formula. After that:
+That one line taps the repo and installs the formula. Newer Homebrew builds may ask you to trust the tap first:
+
+```bash
+brew tap vishnudas-bluefox/tap
+brew trust --formula vishnudas-bluefox/tap/tgplay
+brew install tgplay
+```
+
+After that:
 
 ```bash
 tgplay
