@@ -12,7 +12,7 @@ class Tgplay < Formula
   def install
     libexec.install "tgplay"
     (lib/"tgplay").install_symlink libexec
-    (bin/"tgplay").install "bin/tgplay"
+    bin.install "bin/tgplay"
   end
 
   def caveats
