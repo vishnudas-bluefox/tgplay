@@ -1,66 +1,62 @@
 # tgplay
 
-Monitor Telegram downloads on macOS and play them from the terminal **while they are still arriving**.
+Play a Telegram video on your Mac **before the download finishes**.
+
+Telegram usually makes you wait until the whole file is saved. tgplay watches the download, shows progress, and opens it in VLC (or another player you pick).
 
 Created by [Vishnudas-bluefox](https://github.com/vishnudas-bluefox)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![macOS](https://img.shields.io/badge/platform-macOS-lightgrey.svg)](#requirements)
+[![macOS](https://img.shields.io/badge/platform-macOS-lightgrey.svg)](#1-install-homebrew-if-you-dont-have-it)
 
-Telegram for Mac writes in-progress files as `telegram-cloud-document-…_partial` inside its Group Container. **tgplay** finds those files, shows live size and speed, then asks you to confirm the file and pick a player before anything launches.
+It stays on your Mac. No Telegram login. No upload.
 
-**VLC is first and recommended.** IINA and mpv appear if they are installed.
+---
 
-```
- tgplay 0.1.0   15012036675620673419/postbox/media
- Telegram Downloads
+## What you need
 
- ❯ 🎬 H264 · 1280×536 · #431659  1h 12m  · playable
-   ████░░░░░░░░░░░░░░░░░░░░░░░░  33.00 MB / 1.41 GB   2.3%
-   ↓ 12.1 MB/s  ·  eta 1m 52s  ·  stable/account-…
+- A Mac
+- [Telegram for Mac](https://macos.telegram.org/)
+- [Homebrew](https://brew.sh) (the usual way to install Mac command-line tools)
+- [VLC](https://www.videolan.org/vlc/) to play the video (recommended)
 
-   🎬 HEVC · 1620×1080 · #670460  2h 08m  · playable
-   ████████████████████████████  2.93 GB / 2.93 GB  100%
-   complete  ·  stable/account-…
+If you already have Homebrew and VLC, skip to [Install tgplay](#2-install-tgplay).
 
- ↑↓ select file   Enter choose player   o reveal   q quit
-```
+---
 
-No Telegram API. No login. No extra daemon. It only reads local cache files on your Mac.
+## 1. Install Homebrew (if you don’t have it)
 
-## Features
-
-- Finds native Telegram for Mac media automatically (`6N38VWS5BX.ru.keepcoder.Telegram`)
-- Lists active `_partial` downloads and recently finished large files
-- Live progress, speed, ETA, and a playability hint
-- Confirm the selected file, then choose **VLC / IINA / mpv** before playback
-- Reveal the file in Finder or open `~/Downloads`
-- `--list` mode for scripts and quick checks
-
-## Requirements
-
-- macOS
-- [uv](https://docs.astral.sh/uv/getting-started/installation/) (recommended) or Python 3.10+
-- A player: [VLC](https://www.videolan.org/vlc/) (recommended), or [IINA](https://iina.io/) / [mpv](https://mpv.io/)
-- Optional: [ffmpeg](https://ffmpeg.org/) / `ffprobe` for duration and codec labels
+1. Open **Terminal** (Spotlight: press `Cmd + Space`, type `Terminal`, press Return).
+2. Paste this line and press Return:
 
 ```bash
-brew install --cask vlc
-# optional extras
-brew install --cask iina
-brew install mpv ffmpeg
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-## Install (macOS)
+3. Follow the on-screen prompts.
+4. If it asks you to run two more commands at the end (“Next steps”), copy those too, then press Return after each one.
 
-The usual path is Homebrew. This puts `tgplay` on your PATH so it works from any terminal:
+Check that it worked:
+
+```bash
+brew --version
+```
+
+You should see a version number, not “command not found”.
+
+---
+
+## 2. Install tgplay
+
+In Terminal, paste:
 
 ```bash
 brew install vishnudas-bluefox/tap/tgplay
 ```
 
-That one line taps the repo and installs the formula. Newer Homebrew builds may ask you to trust the tap first:
+That one line downloads tgplay and makes the `tgplay` command available in every Terminal window.
+
+If Homebrew says the tap is not trusted, run these three lines instead:
 
 ```bash
 brew tap vishnudas-bluefox/tap
@@ -68,25 +64,135 @@ brew trust --formula vishnudas-bluefox/tap/tgplay
 brew install tgplay
 ```
 
-After that:
+Check that it worked:
 
 ```bash
-tgplay
+tgplay --version
 ```
 
-If you already tapped once, later upgrades are just:
+You should see `tgplay 0.1.0` (or a later version).
+
+Later, to update:
 
 ```bash
 brew upgrade tgplay
 ```
 
-You still need a player. VLC is recommended:
+---
+
+## 3. Install VLC (if you don’t have it)
+
+VLC is the player tgplay recommends.
 
 ```bash
 brew install --cask vlc
 ```
 
-### From source
+Or download it from [videolan.org](https://www.videolan.org/vlc/).
+
+IINA and mpv also work if they are already installed. You pick the player each time, before anything starts.
+
+---
+
+## 4. Use it
+
+1. Open **Telegram** and start downloading a video or a large file.
+2. Open **Terminal**.
+3. Type `tgplay` and press Return.
+
+```bash
+tgplay
+```
+
+4. A list of Telegram downloads appears. The highlighted row is the one with `❯`.
+5. Use the **up / down arrow keys** to highlight the file you want.
+6. Press **Return**. A confirm screen shows the file and a list of players.
+7. Leave **VLC** selected (it is first), or use the arrows to pick another player.
+8. Press **Return** again. VLC opens that file.
+9. Press **`q`** in Terminal when you are done, to quit tgplay.
+
+Nothing plays until you confirm both the file and the player.
+
+```
+ Telegram Downloads
+
+ ❯ 🎬 H264 · 1280×536          33 MB / 1.41 GB   2%
+      downloading · playable
+
+   🎬 HEVC · 1620×1080         2.93 GB / 2.93 GB  100%
+      complete
+
+ ↑↓ choose a file     Return confirm     q quit
+```
+
+---
+
+## Keys
+
+While the file list is open:
+
+| Key | What it does |
+| --- | --- |
+| `↑` / `↓` | Move to another file |
+| `Return` or Space | Confirm this file, then pick a player |
+| `o` | Show the file in Finder |
+| `d` | Open your Downloads folder |
+| `r` | Refresh the list |
+| `q` | Quit |
+
+On the confirm / player screen:
+
+| Key | What it does |
+| --- | --- |
+| `↑` / `↓` | Choose VLC, IINA, or mpv |
+| `Return` | Start that player |
+| `Esc` or `n` | Go back — nothing starts |
+
+---
+
+## If something goes wrong
+
+**`brew: command not found`**  
+Homebrew is not installed, or Terminal cannot see it. Do [step 1](#1-install-homebrew-if-you-dont-have-it) again, including any “Next steps” commands Homebrew printed.
+
+**`tgplay: command not found`**  
+It is not installed, or you need a new Terminal window. Run the install line in [step 2](#2-install-tgplay), close Terminal, open it again, then type `tgplay`.
+
+**The list is empty**  
+Start the download in Telegram first, then run `tgplay`. Small photos and stickers are hidden on purpose. Very old leftover files are hidden unless you run `tgplay --all`.
+
+**It says “not yet” or VLC will not play**  
+Telegram sometimes writes the file in pieces. MKV videos usually play early. Some MP4 files only play after the download is finished. Wait a bit, press `r` to refresh, and try again.
+
+**Homebrew asks you to trust the tap**  
+That is normal for a tool that is not in the official Homebrew catalog. Use the three-line install in [step 2](#2-install-tgplay).
+
+**The name looks like `#431659` instead of the movie title**  
+Telegram does not store the original filename in that cache folder. tgplay shows the video type, size, and progress instead.
+
+---
+
+## Privacy
+
+tgplay never sends your videos anywhere. It only looks at Telegram’s download folder on this Mac and opens a player you already have.
+
+---
+
+## Extra commands (optional)
+
+Most people only need `tgplay`. These are extras:
+
+```bash
+tgplay --list          # print the list and quit (no arrows)
+tgplay --all           # also show older leftover files
+tgplay --player vlc    # pre-select VLC on the confirm screen
+```
+
+---
+
+## For developers
+
+Install from source:
 
 ```bash
 git clone https://github.com/vishnudas-bluefox/tgplay.git
@@ -95,98 +201,14 @@ uv sync
 uv run tgplay
 ```
 
-With pip, from the repo:
-
-```bash
-python3 -m pip install .
-tgplay
-```
-
-## Run
-
-```bash
-uv run tgplay
-```
-
-Other entry points:
-
-```bash
-uv run python tgplay.py
-uv run python -m tgplay
-uv run tgplay --list
-```
-
-Start a video download in Telegram, highlight it with ↑/↓, press Enter, pick **VLC**, then Enter again to play.
-
-### Keys
-
-| Key | Action |
-| --- | --- |
-| ↑ / ↓ or `k` / `j` | Move file selection |
-| Enter or Space | Open confirm + player picker |
-| ↑ / ↓ in picker | Choose VLC / IINA / mpv |
-| Enter in picker | Start the selected player |
-| Esc or `n` | Cancel, do not play |
-| `o` | Reveal the file in Finder |
-| `d` | Open `~/Downloads` |
-| `r` | Rescan Telegram folders |
-| `q` | Quit |
-
-### Options
-
-```bash
-uv run tgplay --list
-uv run tgplay --all
-uv run tgplay --player vlc
-uv run tgplay --min-size 8MB
-uv run tgplay --media-dir "/path/to/postbox/media"
-```
-
-| Flag | Meaning |
-| --- | --- |
-| `-l`, `--list` | Print downloads and exit |
-| `--all` | Include stale leftover `_partial` files and older finished downloads |
-| `--player` | Preselect `vlc`, `iina`, `mpv`, or `auto` (VLC first) |
-| `--min-size` | Ignore files smaller than this (default `2MB`) |
-| `--media-dir` | Extra Telegram `postbox/media` folder (repeatable) |
-
-## How it works
-
-Telegram for Mac stores downloads here:
-
-```text
-~/Library/Group Containers/6N38VWS5BX.ru.keepcoder.Telegram/
-  {stable,appstore}/account-*/postbox/media/telegram-cloud-document-*_partial
-```
-
-tgplay:
-
-1. Scans those folders (no network, no Telegram login)
-2. Reads the sidecar `.meta` file for expected vs downloaded size
-3. Sniffs the file header (`ffprobe` when available)
-4. Asks you to confirm the file and pick a player
-5. Launches VLC (or IINA / mpv) against the `_partial` file
-
-Telegram often writes chunks out of order. **tgplay does not remux the file.**
-
-- **Matroska (`.mkv`)** is usually playable once the header is on disk
-- **MP4** with a `moov` atom at the end may not start until the download finishes
-- If the start of the file is still empty, the row is marked **not yet**
-
-Original Telegram filenames are not in the cache path. Rows are labeled from the container, codec, and resolution instead.
-
-## Privacy
-
-tgplay never uploads your media. It only reads local Telegram cache files and starts a local player.
-
-## Project docs
+How it finds files, the Homebrew formula, and the cache path are documented in [packaging/README.md](packaging/README.md).
 
 | File | Purpose |
-| ---- | ------- |
+| --- | --- |
 | [CHANGELOG.md](CHANGELOG.md) | Version history |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | Development and PR guidelines |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | How to send a change |
 | [LICENSE](LICENSE) | MIT license |
-| [SECURITY.md](SECURITY.md) | Vulnerability reporting |
+| [SECURITY.md](SECURITY.md) | How to report a security issue |
 
 ## License
 

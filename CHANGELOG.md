@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Rewrite the README as a step-by-step guide for regular Mac users
 - Confirm the selected file before playback
 - Ask which player to use; VLC is first and recommended
 - Detect `/Applications/VLC.app` even when `vlc` is not on PATH
