@@ -3,7 +3,7 @@ class Tgplay < Formula
   homepage "https://github.com/vishnudas-bluefox/tgplay"
   url "https://github.com/vishnudas-bluefox/tgplay/archive/refs/tags/v0.1.0.tar.gz"
   version "0.1.0"
-  sha256 "REPLACE_AFTER_TAG"
+  sha256 "b3074ba704c2c6411934e475b8014f1b825e8c78c583ceb44ee00756f4f82c0a"
   license "MIT"
   head "https://github.com/vishnudas-bluefox/tgplay.git", branch: "main"
 
