@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Resolve symlinks (e.g. /opt/homebrew/bin/tgplay -> Cellar/.../bin/tgplay).
+SOURCE="${BASH_SOURCE[0]}"
+while [ -L "$SOURCE" ]; do
+  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ "$SOURCE" != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+
+# Dev layout: repo/bin/tgplay -> repo/tgplay
+# Packaged layout: /opt/homebrew/bin/tgplay -> /opt/homebrew/lib/tgplay/tgplay
+for ROOT in \
+  "$SCRIPT_DIR/.." \
+  "/opt/homebrew/lib/tgplay" \
+  "/usr/local/lib/tgplay" \
+  "${HOME}/.linuxbrew/lib/tgplay" \
+  "/home/linuxbrew/.linuxbrew/lib/tgplay"; do
+  if [[ -d "$ROOT/tgplay" ]]; then
+    export PYTHONPATH="$ROOT${PYTHONPATH:+:$PYTHONPATH}"
+    break
+  fi
+done
+
+# Ignore activated virtualenvs so this CLI always uses system / Homebrew Python.
+exec env -u VIRTUAL_ENV -u PYTHONHOME \
+  PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" \
+  python3 -m tgplay "$@"

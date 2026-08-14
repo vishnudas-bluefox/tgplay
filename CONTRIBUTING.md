@@ -26,6 +26,14 @@ Run tests:
 uv run pytest
 ```
 
+Homebrew install (after a tagged release):
+
+```bash
+brew install vishnudas-bluefox/tap/tgplay
+```
+
+See [packaging/README.md](packaging/README.md) for how to publish a new formula version.
+
 ## Making changes
 
 1. Create a branch from `main`.

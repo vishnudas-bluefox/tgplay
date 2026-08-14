@@ -6,6 +6,7 @@
 - Ask which player to use; VLC is first and recommended
 - Detect `/Applications/VLC.app` even when `vlc` is not on PATH
 - Public GitHub repository and CI
+- Homebrew tap formula: `brew install vishnudas-bluefox/tap/tgplay`
 
 ## 0.1.0 — 2026-08-13
 
